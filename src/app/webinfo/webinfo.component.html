@@ -1,12 +1,13 @@
 <div class="flex items-center justify-center h-screen">
-  <form class="w-full max-w-md">
+  <form class="w-full max-w-lg">
     <div class="flex flex-col items-center justify-center">
-      <label for="url" class="block text-gray-700 text-sm font-bold mb-2">Enter the URL of the website you want to get information about:</label>
-      <input type="text" [(ngModel)]="url" name="url" id="url" pattern="https?://.+" required placeholder="https://example.com" class="rounded-md p-2 border border-gray-300 w-full mb-4">
-      <button [disabled]="isLoading" (click)="getSiteInfo()" class="rounded-md p-2 bg-blue-500 text-white">Get Site Info</button>
-      <div *ngIf="errorMessage" class="error text-red-500 text-xs mt-4">{{ errorMessage }}</div>
-      <div *ngIf="isLoading" class="loading text-blue-500 text-xs mt-4">Loading...</div>
-
+      <div class="bg-sky-100 rounded-lg py-2 px-4">
+        <label for="url" class="block text-gray-700 text-sm font-bold mb-2">Enter the URL of the website you want to get information about:</label>
+        <input type="text" [(ngModel)]="url" name="url" id="url" pattern="https?://.+" required placeholder="https://example.com" class="rounded-md p-2 border border-gray-300 w-full mb-4">
+        <button [disabled]="isLoading" (click)="getSiteInfo()" class="rounded-md p-2 bg-blue-500 text-white">Get Site Info</button>
+        <div *ngIf="errorMessage" class="error text-red-500 text-xs mt-4">{{ errorMessage }}</div>
+        <div *ngIf="isLoading" class="loading text-blue-500 text-xs mt-4">Loading...</div>
+      </div>
       <!-- Display the result data below the input field -->
       <div *ngIf="result" class="mt-4">
         <h2 class="text-xl font-bold mb-4">{{ result.title }}</h2>

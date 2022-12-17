@@ -15,6 +15,10 @@ ng serve
 
 Enter the URL of the website you want to get information about in the input field, and click the "Get Site Info" button to retrieve the information.
 
+## Screenshot
+![webinfo_site](https://user-images.githubusercontent.com/2889542/208253178-d14dbe89-6104-4964-95ce-717d7eedcb02.png)
+
+
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for more details.
 
