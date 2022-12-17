@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SiteInfo } from './webinfo.types';
-import { MatDialog } from '@angular/material/dialog';
-import { PopupComponent } from './popup/popup.component';
 
 @Component({
   selector: 'app-webinfo',
@@ -11,22 +9,28 @@ import { PopupComponent } from './popup/popup.component';
 })
 export class WebinfoComponent implements OnInit {
   url: string = "";
+  isLoading = false;
+  errorMessage: string = "";
+  result?: SiteInfo
 
-  constructor(private http: HttpClient, private dialog: MatDialog) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
   getSiteInfo() {
+    this.isLoading = true;
+    this.errorMessage = "";
     this.http.get<SiteInfo>('http://localhost:8080/webinfo?url=' + this.url)
-      .subscribe(data => {
-        this.openPopup(data);
-      });
-  }
-
-  openPopup(data: SiteInfo) {
-    this.dialog.open(PopupComponent, {
-      data: data
-    });
+      .subscribe(
+        data => {
+          this.result = data;
+          this.isLoading = false;
+        },
+        error => {
+          this.errorMessage = 'An error occurred while retrieving the site information. Please try again.';
+          this.isLoading = false;
+        }
+      );
   }
 }
